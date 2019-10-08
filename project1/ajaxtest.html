@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="text" id="target" name="">
+	<button id="send">发送</button>
+</body>
+<script type="text/javascript">
+
+	var target = document.getElementById('target');
+	target = target.value;
+
+	var send = document.getElementById('send');
+
+
+	function loadXMLDoc()
+	{
+		var inf = 'username=abc';
+
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		{
+			//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+			xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{
+			// IE6, IE5 浏览器执行代码
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function()
+		{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+			}
+		}
+		xmlhttp.open("POST","localhost:8888/user/check-username",true);
+		xmlhttp.send(inf);
+	}
+
+	send.onclick = function(){
+		loadXMLDoc();
+	}
+
+	</script>
+</html>
